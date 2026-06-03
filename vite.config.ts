@@ -4,6 +4,7 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  // Triggering editor file-system watcher refresh to track /public/images and /src/public/images
   return {
     publicDir: 'src/public',
     plugins: [react(), tailwindcss()],
