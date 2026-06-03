@@ -82,7 +82,12 @@ export default async function handler(req: any, res: any) {
   // Handle POST request (Form Submission)
   if (method === 'POST') {
     try {
-      const body = await getBody(req);
+      let body;
+      if (req.body && typeof req.body === 'object') {
+        body = req.body;
+      } else {
+        body = await getBody(req);
+      }
       const { name, email, subject, message } = body;
 
       if (!name || !email || !subject || !message) {

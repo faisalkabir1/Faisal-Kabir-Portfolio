@@ -34,6 +34,9 @@ async function startServer() {
   // JSON decoder middleware
   app.use(express.json());
 
+  // Serve static files from the public folder
+  app.use(express.static(path.join(process.cwd(), 'public')));
+
   // API endpoints
   // 1. Submit message from Contact form
   app.post('/api/contact', async (req, res) => {
