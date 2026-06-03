@@ -1,0 +1,249 @@
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+
+interface Testimonial {
+  id: string;
+  name: string;
+  designation: string;
+  company: string;
+  reviewText: string;
+  image: string;
+  rating: number;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: "rec-1",
+    name: "Maruf Hossain",
+    designation: "Lead Software Engineer",
+    company: "Siara Solutions Pty Ltd",
+    reviewText: "Faisal is an exceptional SQA Engineer who bridges the gap between development speed and code stability. His regression automation suites with Playwright and REST Assured saved us dozens of execution hours every week, catching critical race conditions long before our code reached production. His diagnostic accuracy is unparalleled.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  },
+  {
+    id: "rec-2",
+    name: "Salman Rahman",
+    designation: "Sr. Software Engineer (QA)",
+    company: "Cefalo Bangladesh Ltd.",
+    reviewText: "Having collaborated with Faisal on complex test matrices, I was consistently impressed by his meticulous defect documenting and requirement mapping. He doesn't just log bugs; he provides full trace patterns, visual logs, and reproducible CLI inputs that make resolving issues a breeze for the dev team. Faisal understands quality at a deep level.",
+    image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  },
+  {
+    id: "rec-3",
+    name: "Tasnim Ahmed",
+    designation: "Product Owner",
+    company: "Tashus Car Share Platform",
+    reviewText: "Faisal's mobile testing strategies on physical devices were instrumental in making Tashus incredibly stable. He executed rigorous gesture audits, network bandwidth latency mocks, and push-notifications checks that significantly boosted our App Store and Google Play launch scores. He is dedicated, analytical, and highly proactive in Agile environments.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  },
+  {
+    id: "rec-4",
+    name: "Anik Sen",
+    designation: "Co-Founder & CTO",
+    company: "Garibook.com",
+    reviewText: "At Garibook, Faisal took full ownership of our traveler and fleet captain application reliability. He engineered bulletproof validation workflows for real-time location streaming and complex payment handshakes. Thanks to his relentless performance test designs on JMeter, our high-frequency log pipelines remained super resilient under concurrent peak traffic.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  }
+];
+
+export default function Recommendations() {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const resetTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    timerRef.current = setInterval(() => {
+      setDirection('right');
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 4000);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, []);
+
+  const handlePrev = () => {
+    setDirection('left');
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1));
+    resetTimer();
+  };
+
+  const handleNext = () => {
+    setDirection('right');
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    resetTimer();
+  };
+
+  const handleDotClick = (index: number) => {
+    setDirection(index > currentIndex ? 'right' : 'left');
+    setCurrentIndex(index);
+    resetTimer();
+  };
+
+  // Slide variants for slide right-to-left transition matches direction
+  const slideVariants = {
+    enter: (dir: 'left' | 'right') => ({
+      x: dir === 'right' ? 100 : -100,
+      opacity: 0
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.3 }
+      }
+    },
+    exit: (dir: 'left' | 'right') => ({
+      x: dir === 'right' ? -100 : 100,
+      opacity: 0,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.25 }
+      }
+    })
+  };
+
+  return (
+    <section id="recommendations" className="py-16 bg-white dark:bg-zinc-950 shadow-sm relative overflow-hidden select-none">
+      {/* Decorative gradient glowing orb */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/5 dark:bg-emerald-500/2 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div id="recommendations-header" className="mb-10 text-center">
+          <p className="text-xs font-mono font-medium tracking-widest text-emerald-500 uppercase mb-3 text-center">
+            Recommendations
+          </p>
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white text-center">
+            Professional Reviews
+          </h2>
+          <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-550 dark:text-zinc-400 text-center">
+            Here is what engineering partners and product team leaders say about my software quality assurance impact and collaboration.
+          </p>
+        </div>
+
+        {/* Carousel Slider Panel Wrapper */}
+        <div id="reviews-carousel-outer" className="relative min-h-[360px] md:min-h-[320px] flex items-center justify-center p-1">
+          
+          {/* Main Card Testimonial Display */}
+          <div id="reviews-slider-track" className="w-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-900/15 border border-zinc-150/50 dark:border-zinc-800/40 rounded-3xl p-8 md:p-12 shadow-sm">
+            
+            {/* Absolute quote background icons */}
+            <div className="absolute top-6 left-6 text-zinc-200/50 dark:text-zinc-800/15 pointer-events-none">
+              <Quote size={56} className="rotate-180" />
+            </div>
+
+            <AnimatePresence initial={false} custom={direction} mode="wait">
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="flex flex-col h-full justify-between relative z-10"
+                id={`recommendation-slide-${testimonials[currentIndex].id}`}
+              >
+                {/* Review Text */}
+                <div className="mb-8" id={`review-text-wrap-${testimonials[currentIndex].id}`}>
+                  {/* Rating Stars */}
+                  <div className="flex gap-1 mb-4" id={`rating-stars-${testimonials[currentIndex].id}`}>
+                    {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                      <Star key={i} size={15} className="fill-emerald-500 text-emerald-500" />
+                    ))}
+                  </div>
+
+                  <p className="text-sm md:text-base leading-relaxed text-zinc-700 dark:text-zinc-300 italic font-normal tracking-wide">
+                    "{testimonials[currentIndex].reviewText}"
+                  </p>
+                </div>
+
+                {/* Profile Card Section */}
+                <div className="flex items-center gap-4 border-t border-zinc-200/50 dark:border-zinc-850/40 pt-6" id={`reviewer-meta-${testimonials[currentIndex].id}`}>
+                  <div className="relative" id={`avatar-container-${testimonials[currentIndex].id}`}>
+                    <img
+                      src={testimonials[currentIndex].image}
+                      alt={testimonials[currentIndex].name}
+                      referrerPolicy="no-referrer"
+                      className="w-14 h-14 rounded-full object-cover border-2 border-emerald-500/20 dark:border-emerald-500/30 shadow-sm"
+                    />
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-zinc-50 dark:border-zinc-900 rounded-full flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-base font-extrabold text-zinc-900 dark:text-white leading-tight">
+                      {testimonials[currentIndex].name}
+                    </h4>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+                      {testimonials[currentIndex].designation}
+                    </p>
+                    <p className="text-[10px] text-emerald-500 dark:text-emerald-400/90 font-mono font-semibold uppercase mt-0.5 tracking-wider">
+                      {testimonials[currentIndex].company}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Slider Action Arrow Controllers */}
+          <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-6 z-20" id="recommendations-ctrl-prev">
+            <button
+              onClick={handlePrev}
+              className="w-10 h-10 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:border-emerald-500/30 flex items-center justify-center shadow-md active:scale-95 transition-all duration-200 cursor-pointer"
+              aria-label="Previous recommendation"
+            >
+              <ChevronLeft size={20} />
+            </button>
+          </div>
+
+          <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-6 z-20" id="recommendations-ctrl-next">
+            <button
+              onClick={handleNext}
+              className="w-10 h-10 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:border-emerald-500/30 flex items-center justify-center shadow-md active:scale-95 transition-all duration-200 cursor-pointer"
+              aria-label="Next recommendation"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+
+        </div>
+
+        {/* Bullet Progress Indicators */}
+        <div className="flex justify-center items-center gap-2.5 mt-8" id="recommendations-dots-container">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handleDotClick(index)}
+              className={`h-2.5 rounded-full transition-all duration-350 cursor-pointer ${
+                index === currentIndex 
+                  ? 'w-7 bg-emerald-500' 
+                  : 'w-2.5 bg-zinc-250 dark:bg-zinc-800 hover:bg-zinc-400 dark:hover:bg-zinc-700'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+              id={`dot-indicator-${index}`}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
