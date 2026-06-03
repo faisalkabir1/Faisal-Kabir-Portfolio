@@ -10,7 +10,7 @@ export const personalInfo = {
   linkedin: "https://linkedin.com",
   location: "Mohakhali-1212, Dhaka, Bangladesh",
   objective: "To pursue a challenging career in a competitive world where enthusiasm, trustworthiness, hard work, and energy will encourage me to develop myself and use my insight and mastery to become a proficient Software Quality Assurance Engineer.",
-  avatar: "/src/assets/images/regenerated_image_1780470408139.jpg"
+  avatar: "/images/regenerated_image_1780470408139.jpg"
 };
 
 export const projects: Project[] = [
@@ -23,7 +23,7 @@ export const projects: Project[] = [
     tag: "Web",
     demoUrl: "https://garibook.com",
     technologies: ["Manual Testing", "Selenium", "Web Verification", "Payment Gateway", "Performance Testing"],
-    image: "/src/assets/images/regenerated_image_1780470614799.png",
+    image: "/images/regenerated_image_1780470614799.png",
     featured: true
   },
   {
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.customer",
     appStoreUrl: "https://apps.apple.com/us/app/garibook/id1590483832",
     technologies: ["Appium", "Mobile Testing", "Vysor", "GPS Tracking", "Push Notifications"],
-    image: "/src/assets/images/regenerated_image_1780470617497.jpg",
+    image: "/images/regenerated_image_1780470617497.jpg",
     featured: true
   },
   {
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.driver",
     appStoreUrl: "https://apps.apple.com/us/app/garibook-driver/id1590483864",
     technologies: ["Appium", "Coordinates Spoofing", "Background Services", "GPS Audits", "Offline Sync"],
-    image: "/src/assets/images/regenerated_image_1780469944552.jpg",
+    image: "/images/regenerated_image_1780469944552.jpg",
     featured: true
   },
   {
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.enterprise",
     appStoreUrl: "https://apps.apple.com/us/app/garibook-enterprise/id1590483899",
     technologies: ["Appium", "Role-Based Access", "SSO Auditing", "Invoice Validation", "Full-Regression"],
-    image: "/src/assets/images/regenerated_image_1780469946282.png",
+    image: "/images/regenerated_image_1780469946282.png",
     featured: true
   },
   {
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     category: "testcases",
     tag: "Web",
     technologies: ["Test Design", "Traceability Matrix", "Defect Logging", "JIRA"],
-    image: "/src/assets/images/regenerated_image_1780483747100.png",
+    image: "/images/regenerated_image_1780483747100.png",
     featured: true
   },
   {
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     category: "testcases",
     tag: "Mobile App",
     technologies: ["Mobile Test Plans", "Gesture Audits", "Device Compliance", "Excel Sheets"],
-    image: "/src/assets/images/regenerated_image_1780483750138.png",
+    image: "/images/regenerated_image_1780483750138.png",
     featured: true
   },
   {
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     longDescription: "Tashus connects verified vehicle owners with short-term, medium-term, and extended borrowing renters. Managed end-to-end quality assurance cycles, requirement traceability mapping, and functional flows to secure a seamless rental ecosystem.",
     category: "fullstack",
     technologies: ["React-Js", "Vysor", "Manual Testing", "Test Cases", "Web & Mobile"],
-    image: "/src/assets/images/regenerated_image_1780393757075.jpg",
+    image: "/images/regenerated_image_1780393757075.jpg",
     featured: true
   },
   {
@@ -104,7 +104,7 @@ export const projects: Project[] = [
     longDescription: "Ensures trade transparency by enabling sellers to list certified specs, accurate damage analysis, and rich galleries. Audited complete user onboarding processes, listing flows, and search structures across adaptive clients.",
     category: "fullstack",
     technologies: ["React-Js", "Functional Testing", "Spec Audits", "Acceptance Testing"],
-    image: "/src/assets/images/regenerated_image_1780394805243.webp",
+    image: "/images/regenerated_image_1780394805243.webp",
     featured: true
   },
   {
@@ -114,7 +114,7 @@ export const projects: Project[] = [
     longDescription: "TuteAir provides a highly integrated virtual classroom search index where students connect with verified global instructors. Conducted comprehensive acceptance, performance, and validation testing for global user flows.",
     category: "fullstack",
     technologies: ["React-Js", "System Testing", "Responsive Checks", "Agile Sprints"],
-    image: "/src/assets/images/regenerated_image_1780394806767.png",
+    image: "/images/regenerated_image_1780394806767.png",
     featured: true
   },
   {
@@ -125,7 +125,7 @@ export const projects: Project[] = [
     category: "fullstack",
     tag: "Mobile App",
     technologies: ["Mobile Testing", "Appium", "Location Updates", "Logs Auditing"],
-    image: "/src/assets/images/regenerated_image_1780470963331.webp",
+    image: "/images/regenerated_image_1780470963331.webp",
     featured: true
   },
   {
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     tag: "Web",
     demoUrl: "https://eatshawarma.com",
     technologies: ["Manual Testing", "Functional Audits", "Payment Checks", "CSS Checks"],
-    image: "/src/assets/images/regenerated_image_1780470964157.jpg",
+    image: "/images/regenerated_image_1780470964157.jpg",
     featured: true
   },
   {
@@ -147,7 +147,7 @@ export const projects: Project[] = [
     longDescription: "Automated complete transactional logic validations between system administrative dashboards, agents, custom merchants, and users. Includes custom asserts measuring state responses, payloads, and parameter schemas.",
     category: "api",
     technologies: ["Postman", "Newman", "REST Assured", "API Testing", "JSON Schema"],
-    image: "/src/assets/images/regenerated_image_1780394807492.webp",
+    image: "/images/regenerated_image_1780394807492.webp",
     githubUrl: "https://github.com",
     featured: true
   },
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     longDescription: "Designed modular structural elements to perform rapid input validations, state checking, and robust page extraction. Practices clean, reliable selectors and dynamic wait times to bypass interface flickering.",
     category: "automation",
     technologies: ["Selenium", "JUnit", "Java", "Web Forms", "Selectors"],
-    image: "/src/assets/images/regenerated_image_1780484651774.png",
+    image: "/images/regenerated_image_1780484651774.png",
     githubUrl: "https://github.com",
     featured: false
   },
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     longDescription: "Completely automated registration, session handshakes, balance ledgers, and transaction modules. Includes structured Page Object parameters, data-driven tests, and reports saving results directly inside logs.",
     category: "automation",
     technologies: ["Selenium", "TestNG", "Java", "Page Object Model", "Data-Driven"],
-    image: "/src/assets/images/regenerated_image_1780394808393.png",
+    image: "/images/regenerated_image_1780394808393.png",
     githubUrl: "https://github.com",
     featured: false
   },
@@ -180,7 +180,7 @@ export const projects: Project[] = [
     longDescription: "Executed targeted thread profiling and load simulations across hot booking transaction paths. Formulated real-time report breakdowns charting error ratios, query response distributions, and load latency curves.",
     category: "performance",
     technologies: ["JMeter", "Performance Testing", "Thread Profile", "Latency Auditing"],
-    image: "/src/assets/images/regenerated_image_1780483737963.png",
+    image: "/images/regenerated_image_1780483737963.png",
     githubUrl: "https://github.com",
     featured: false
   },
@@ -192,7 +192,7 @@ export const projects: Project[] = [
     category: "automation",
     tag: "Web",
     technologies: ["Playwright", "TypeScript", "POM Design", "CI/CD Setup"],
-    image: "/src/assets/images/regenerated_image_1780483741738.png",
+    image: "/images/regenerated_image_1780483741738.png",
     featured: true
   },
   {
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     category: "api",
     tag: "Automation",
     technologies: ["REST Assured", "TestNG", "Java", "JSON Schema", "Allure Reports"],
-    image: "/src/assets/images/regenerated_image_1780483745851.png",
+    image: "/images/regenerated_image_1780483745851.png",
     featured: true
   }
 ];
