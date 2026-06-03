@@ -4,8 +4,8 @@ export const downloadResumeMD = () => {
 Mohakhali-1212, Dhaka, Bangladesh
 Phone: +88 01304386049
 Email: onlyfaisalkabir@gmail.com
-LinkedIn: linkedin.com/in/faisal-kabir
-Github: github.com/onlyfaisalkabir
+LinkedIn: linkedin.com/in/faisal-kabir1
+Github: github.com/faisalkabir1
 
 ## Career Objective
 To pursue a challenging career in a competitive world where enthusiasm, trustworthiness, hard work, and energy will encourage me to develop myself and use my insight and mastery to become a proficient Software Quality Assurance Engineer.

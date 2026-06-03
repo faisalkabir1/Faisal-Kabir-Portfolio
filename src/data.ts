@@ -6,8 +6,8 @@ export const personalInfo = {
   bio: "Specializing in manual and automation testing for web and mobile applications. Experienced in Selenium, Playwright, Appium, Java, TestNG, API testing, and Agile development environments. Passionate about building reliable software through comprehensive testing strategies, effective defect management, and continuous quality improvement. Committed to delivering exceptional user experiences by ensuring products are stable, secure, and production-ready.",
   email: "onlyfaisalkabir@gmail.com",
   phone: "+8801916603009",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
+  github: "https://github.com/faisalkabir1",
+  linkedin: "https://www.linkedin.com/in/faisal-kabir1/",
   location: "Mohakhali-1212, Dhaka, Bangladesh",
   objective: "To pursue a challenging career in a competitive world where enthusiasm, trustworthiness, hard work, and energy will encourage me to develop myself and use my insight and mastery to become a proficient Software Quality Assurance Engineer.",
   avatar: "/images/regenerated_image_1780470408139.jpg"
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     category: "api",
     technologies: ["Postman", "Newman", "REST Assured", "API Testing", "JSON Schema"],
     image: "/images/regenerated_image_1780394807492.webp",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/faisalkabir1",
     featured: true
   },
   {
@@ -159,7 +159,7 @@ export const projects: Project[] = [
     category: "automation",
     technologies: ["Selenium", "JUnit", "Java", "Web Forms", "Selectors"],
     image: "/images/regenerated_image_1780484651774.png",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/faisalkabir1",
     featured: false
   },
   {
@@ -170,7 +170,7 @@ export const projects: Project[] = [
     category: "automation",
     technologies: ["Selenium", "TestNG", "Java", "Page Object Model", "Data-Driven"],
     image: "/images/regenerated_image_1780394808393.png",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/faisalkabir1",
     featured: false
   },
   {
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     category: "performance",
     technologies: ["JMeter", "Performance Testing", "Thread Profile", "Latency Auditing"],
     image: "/images/regenerated_image_1780483737963.png",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/faisalkabir1",
     featured: false
   },
   {

@@ -168,12 +168,12 @@ export default function Contact() {
                     <span className="text-[10px] font-mono text-zinc-400 block">LinkedIn Profile</span>
                     <a
                       id="direct-linkedin-link"
-                      href="https://linkedin.com"
+                      href="https://www.linkedin.com/in/faisal-kabir1/"
                       target="_blank"
                       rel="noreferrer"
                       className="text-xs font-semibold text-zinc-900 dark:text-white hover:underline hover:text-emerald-500 transition-colors"
                     >
-                      linkedin.com/in/faisal-kabir
+                      linkedin.com/in/faisal-kabir1
                     </a>
                   </div>
                 </div>
@@ -186,12 +186,12 @@ export default function Contact() {
                     <span className="text-[10px] font-mono text-zinc-400 block">GitHub Account</span>
                     <a
                       id="direct-github-link"
-                      href="https://github.com"
+                      href="https://github.com/faisalkabir1"
                       target="_blank"
                       rel="noreferrer"
                       className="text-xs font-semibold text-zinc-900 dark:text-white hover:underline hover:text-emerald-500 transition-colors"
                     >
-                      github.com/faisal-kabir
+                      github.com/faisalkabir1
                     </a>
                   </div>
                 </div>
@@ -213,7 +213,7 @@ export default function Contact() {
           </div>
 
           {/* Form Content Side */}
-          <div className="lg:col-span-12 xl:col-span-7 bg-white dark:bg-zinc-950 p-8 rounded-2xl border border-zinc-150/40 dark:border-zinc-800/40 shadow-xs flex flex-col justify-between" id="contact-form-side">
+          <div className="lg:col-span-7 bg-white dark:bg-zinc-950 p-8 rounded-2xl border border-zinc-150/40 dark:border-zinc-800/40 shadow-xs flex flex-col justify-between" id="contact-form-side">
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <motion.div
