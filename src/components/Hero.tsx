@@ -1,8 +1,17 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { ChevronRight, ArrowDown, MapPin, Github, Linkedin, AppWindow, Check } from 'lucide-react';
+import { ChevronRight, ArrowDown, MapPin, Github, Linkedin, AppWindow, Check, User } from 'lucide-react';
 import { personalInfo } from '../data';
 
 export default function Hero() {
+  const [imgSrc, setImgSrc] = useState(personalInfo.avatar || '');
+  const [imgFailed, setImgFailed] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(personalInfo.avatar || '');
+    setImgFailed(false);
+  }, [personalInfo.avatar]);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -30,14 +39,25 @@ export default function Hero() {
               <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-3xl blur-md opacity-30 group-hover:opacity-50 transition duration-300" />
               
               {/* Beautiful main image holder */}
-              <div className="relative w-64 h-64 sm:w-76 sm:h-76 md:w-80 md:h-80 overflow-hidden rounded-3xl border-2 border-white dark:border-zinc-850 shadow-xl bg-zinc-100 dark:bg-zinc-900">
-                <img
-                  id="hero-formal-portrait"
-                  src={personalInfo.avatar}
-                  alt={`${personalInfo.name} Portrait`}
-                  className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="relative w-64 h-64 sm:w-76 sm:h-76 md:w-80 md:h-80 overflow-hidden rounded-3xl border-2 border-white dark:border-zinc-850 shadow-xl bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
+                {!imgFailed && imgSrc ? (
+                  <img
+                    id="hero-formal-portrait"
+                    src={imgSrc}
+                    alt={`${personalInfo.name} Portrait`}
+                    className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                    onError={() => setImgFailed(true)}
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-center p-6 h-full w-full bg-gradient-to-br from-zinc-850 to-zinc-900 border border-zinc-800 rounded-3xl">
+                    <User size={56} className="text-emerald-400 mb-3 animate-pulse" />
+                    <span className="text-xl font-bold text-white tracking-wide uppercase font-sans">
+                      {personalInfo.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                    <span className="text-[10px] text-zinc-400 font-mono mt-1.5 uppercase tracking-widest font-bold">SQA ENGINEER</span>
+                  </div>
+                )}
               </div>
               
               {/* Frame Accents (Bottom badge) */}

@@ -9,6 +9,7 @@ export default function Gallery() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   const categories = [
     { value: 'all', label: 'All Works' },
@@ -144,13 +145,26 @@ export default function Gallery() {
                     onClick={() => setSelectedProject(project)}
                     className="bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-100 dark:border-zinc-850 rounded-2xl overflow-hidden group cursor-pointer hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/2 transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-zinc-200 dark:bg-zinc-950">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        referrerPolicy="no-referrer"
-                        className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-550"
-                      />
+                    <div className="relative aspect-[16/10] overflow-hidden bg-zinc-200 dark:bg-zinc-950 flex items-center justify-center">
+                      {!failedImages[project.id] && project.image ? (
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          referrerPolicy="no-referrer"
+                          onError={() => setFailedImages(prev => ({ ...prev, [project.id]: true }))}
+                          className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-550"
+                        />
+                      ) : (
+                        <div className="flex flex-col items-center justify-center text-center p-6 h-full w-full bg-gradient-to-br from-zinc-800 to-zinc-950 border border-zinc-800/20">
+                          <ShieldAlert size={36} className="text-emerald-400 mb-2 animate-pulse" />
+                          <span className="text-sm font-bold text-white tracking-wide uppercase font-sans truncate max-w-full px-2" id={`fallback-title-${project.id}`}>
+                            {project.title}
+                          </span>
+                          <span className="text-[9px] text-zinc-400 font-mono mt-1 uppercase tracking-widest font-bold bg-zinc-800/60 px-2 py-0.5 rounded-md">
+                            {project.category || 'QA System File'}
+                          </span>
+                        </div>
+                      )}
                       <div className="absolute top-4 left-4 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-md text-[10px] font-extrabold tracking-wider uppercase shadow-xs">
                         {project.tag || (project.category === 'fullstack' ? 'Web & Mobile' : project.category)}
                       </div>
@@ -228,13 +242,23 @@ export default function Gallery() {
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Image header */}
-                <div className="relative aspect-[21/10] bg-zinc-200 dark:bg-zinc-950">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    referrerPolicy="no-referrer"
-                    className="object-cover w-full h-full"
-                  />
+                <div className="relative aspect-[21/10] bg-zinc-200 dark:bg-zinc-950 flex items-center justify-center">
+                  {!failedImages[selectedProject.id] && selectedProject.image ? (
+                    <img
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImages(prev => ({ ...prev, [selectedProject.id]: true }))}
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center text-center p-6 h-full w-full bg-gradient-to-br from-zinc-805 to-zinc-950 border border-zinc-800/20">
+                      <ShieldAlert size={42} className="text-emerald-400 mb-2 animate-pulse" />
+                      <span className="text-sm font-bold text-white tracking-wide uppercase font-sans truncate max-w-full px-4">
+                        {selectedProject.title}
+                      </span>
+                    </div>
+                  )}
                   <button
                     id="close-modal-btn"
                     onClick={() => setSelectedProject(null)}

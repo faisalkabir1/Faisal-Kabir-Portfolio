@@ -72,6 +72,26 @@ export default function Recommendations() {
     })
   };
 
+  if (testimonials.length === 0) {
+    return (
+      <section id="recommendations" className="py-16 bg-white dark:bg-zinc-950 shadow-sm relative overflow-hidden select-none">
+        <div id="recommendations-header" className="mb-10 text-center">
+          <p className="text-xs font-mono font-medium tracking-widest text-emerald-500 uppercase mb-3 text-center">
+            Recommendations
+          </p>
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white text-center">
+            Professional Reviews
+          </h2>
+          <div className="mt-8 p-8 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl bg-zinc-50 dark:bg-zinc-900/15">
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              No recommendations listed yet. You can add one via the Admin Portal!
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="recommendations" className="py-16 bg-white dark:bg-zinc-950 shadow-sm relative overflow-hidden select-none">
       {/* Decorative gradient glowing orb */}

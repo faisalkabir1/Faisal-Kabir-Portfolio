@@ -39,6 +39,12 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
   const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials);
   const [submissions, setSubmissions] = useState<Submission[]>([]);
 
+  // Local raw input state to prevent cursor jump/loss during comma-separated technologies typing
+  const [techInputs, setTechInputs] = useState<Record<string, string>>({});
+
+  // Image load error fallback tracker inside admin lists
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
   // Action status feedbacks
   const [status, setStatus] = useState<{ type: 'idle' | 'loading' | 'success' | 'error'; message: string }>({ type: 'idle', message: '' });
 
@@ -277,6 +283,7 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
   };
 
   const handleProjTechnologiesChange = (projId: string, text: string) => {
+    setTechInputs(prev => ({ ...prev, [projId]: text }));
     const list = text.split(',').map(t => t.trim()).filter(Boolean);
     handleProjectFieldChange(projId, 'technologies', list);
   };
@@ -403,7 +410,7 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
               <div className="relative">
                 <input
                   type="password"
-                  placeholder="Password (default is admin123)"
+                  placeholder="Enter Admin Secret Passkey"
                   value={passkey}
                   onChange={(e) => setPasskey(e.target.value)}
                   className="w-full bg-zinc-950 text-white border border-zinc-800 rounded-xl px-4 py-3.5 pl-11 text-xs focus:outline-hidden focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all font-mono"
@@ -656,8 +663,13 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
                 <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 pb-6 border-b border-zinc-850">
                   <div className="avatar px-1 shrink-0">
                     <div className="w-24 h-24 bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 relative group flex items-center justify-center">
-                      {personalInfo.avatar ? (
-                        <img src={personalInfo.avatar} alt="avatar" className="w-full h-full object-cover" />
+                      {personalInfo.avatar && !failedImages['profile-avatar'] ? (
+                        <img 
+                          src={personalInfo.avatar} 
+                          alt="avatar" 
+                          className="w-full h-full object-cover" 
+                          onError={() => setFailedImages(prev => ({ ...prev, 'profile-avatar': true }))}
+                        />
                       ) : (
                         <User size={32} className="text-zinc-600" />
                       )}
@@ -1017,8 +1029,13 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
                       <div className="md:col-span-4 space-y-3">
                         <label className="block text-[10px] font-bold uppercase text-zinc-400">Project Workspace Cover</label>
                         <div className="aspect-video bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800 relative group flex items-center justify-center">
-                          {proj.image ? (
-                            <img src={proj.image} alt={proj.title} className="w-full h-full object-cover" />
+                          {proj.image && !failedImages[proj.id] ? (
+                            <img 
+                              src={proj.image} 
+                              alt={proj.title} 
+                              className="w-full h-full object-cover" 
+                              onError={() => setFailedImages(prev => ({ ...prev, [proj.id]: true }))}
+                            />
                           ) : (
                             <FolderKanban size={24} className="text-zinc-700" />
                           )}
@@ -1099,7 +1116,7 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
                             <label className="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Target Tech-Stack (comma separated)</label>
                             <input
                               type="text"
-                              value={proj.technologies.join(', ')}
+                              value={techInputs[proj.id] !== undefined ? techInputs[proj.id] : proj.technologies.join(', ')}
                               onChange={(e) => handleProjTechnologiesChange(proj.id, e.target.value)}
                               className="w-full bg-zinc-950 text-white text-xs border border-zinc-800 rounded-lg p-3 focus:outline-hidden focus:border-emerald-500 font-mono"
                               placeholder="Selenium, Appium, Java, Postman"
@@ -1355,10 +1372,15 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
                       <div className="space-y-3">
                         <label className="block text-[10px] font-bold uppercase text-zinc-400">Reviewer Photo</label>
                         <div className="w-24 h-24 bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 relative group flex items-center justify-center">
-                          {test.image ? (
-                            <img src={test.image} alt={test.name} className="w-full h-full object-cover" />
+                          {test.image && !failedImages[test.id] ? (
+                            <img 
+                              src={test.image} 
+                              alt={test.name} 
+                              className="w-full h-full object-cover" 
+                              onError={() => setFailedImages(prev => ({ ...prev, [test.id]: true }))}
+                            />
                           ) : (
-                            <User size={28} className="text-zinc-600" />
+                            <User size={38} className="text-zinc-700" />
                           )}
                         </div>
                         <div>

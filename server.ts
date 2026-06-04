@@ -188,9 +188,9 @@ ${message}
   // 4. Verify administrator passkey
   app.post('/api/admin/verify', (req, res) => {
     const { passkey } = req.body;
-    const expectedPasskey = process.env.ADMIN_PASSKEY || 'admin123';
+    const expectedPasskey = process.env.ADMIN_PASSKEY;
     
-    if (passkey === expectedPasskey) {
+    if (expectedPasskey && passkey === expectedPasskey) {
       return res.json({ success: true, token: 'faisal-admin-auth-token-1337' });
     }
     return res.status(401).json({ error: 'Unauthorized: Invalid administrative passkey.' });
@@ -200,8 +200,8 @@ ${message}
   app.post('/api/upload-image', (req, res) => {
     const { passkey, fileContent, fileName } = req.body;
 
-    const expectedPasskey = process.env.ADMIN_PASSKEY || 'admin123';
-    if (passkey !== expectedPasskey) {
+    const expectedPasskey = process.env.ADMIN_PASSKEY;
+    if (!expectedPasskey || passkey !== expectedPasskey) {
       return res.status(401).json({ error: 'Unauthorized: Invalid passkey.' });
     }
 
@@ -226,6 +226,27 @@ ${message}
       // Extract Base64 data block
       const base64Data = fileContent.replace(/^data:image\/\w+;base64,/, "");
       fs.writeFileSync(targetPath, base64Data, 'base64');
+
+      // Also proactively save to dist/images/ and dist/public/images/ to guarantee immediate visibility across all environment states
+      try {
+        const distImagesDir = path.join(process.cwd(), 'dist', 'images');
+        if (!fs.existsSync(distImagesDir)) {
+          fs.mkdirSync(distImagesDir, { recursive: true });
+        }
+        fs.writeFileSync(path.join(distImagesDir, cleanFileName), base64Data, 'base64');
+      } catch (e) {
+        // Safe to ignore if dist directory doesn't exist yet before standard production builds
+      }
+
+      try {
+        const distPublicImagesDir = path.join(process.cwd(), 'dist', 'public', 'images');
+        if (!fs.existsSync(distPublicImagesDir)) {
+          fs.mkdirSync(distPublicImagesDir, { recursive: true });
+        }
+        fs.writeFileSync(path.join(distPublicImagesDir, cleanFileName), base64Data, 'base64');
+      } catch (e) {
+        // Safe to ignore
+      }
 
       const relativeUrlPath = `/images/${cleanFileName}`;
       console.log(`[API /api/upload-image] Saved image ${cleanFileName} successfully.`);
@@ -280,6 +301,9 @@ export const testimonials: Testimonial[] = ${JSON.stringify(testimonials, null, 
     }
   });
 
+
+  // Ensure uploaded images are served statically and instantly bypass Vite's router caching
+  app.use('/images', express.static(path.join(process.cwd(), 'public', 'images')));
 
   // Serve static assets or mount Vite server depending on Environment
   if (process.env.NODE_ENV !== 'production') {
