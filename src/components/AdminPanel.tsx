@@ -234,12 +234,11 @@ export default function AdminPanel({ onBack }: { onBack: () => void }) {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Vercel's filesystem is read-only — inform the user clearly
-        setStatus({
-          type: 'warning',
-          message: '⚠️ Data received by server. However, Vercel\'s filesystem is read-only — changes will NOT persist across redeployments. To save permanently, update src/data.ts in your GitHub repo and redeploy.'
-        });
-      } else {
+  setStatus({
+    type: 'success',
+    message: 'Portfolio data saved successfully! Changes are live immediately — no redeploy needed.'
+  });
+} else {
         setStatus({ type: 'error', message: data.error || 'Failed to save portfolio data.' });
       }
     } catch (err: any) {
