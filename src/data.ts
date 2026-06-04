@@ -2,6 +2,8 @@ import { Project, Skill, Experience, Testimonial } from './types';
 
 export const personalInfo = {
   name: "Faisal Kabir",
+  // Public URL to the hosted PDF resume (set this when you upload the PDF to blob storage)
+  resume: "",
   title: "Software Quality Assurance Engineer",
   bio: "Specializing in manual and automation testing for web and mobile applications. Experienced in Selenium, Playwright, Appium, Java, TestNG, API testing, and Agile development environments. Passionate about building reliable software through comprehensive testing strategies, effective defect management, and continuous quality improvement. Committed to delivering exceptional user experiences by ensuring products are stable, secure, and production-ready.",
   email: "onlyfaisalkabir@gmail.com",

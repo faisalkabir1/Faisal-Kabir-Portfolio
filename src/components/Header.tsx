@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, ArrowDownToLine } from 'lucide-react';
-import { downloadResumeMD } from '../utils';
+import { downloadResume } from '../utils';
+import { personalInfo } from '../data';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -99,7 +100,7 @@ export default function Header({ darkMode, setDarkMode, activeSection, setActive
           {/* Desktop Download Resume */}
           <button
             id="header-download-resume-btn"
-            onClick={downloadResumeMD}
+            onClick={() => downloadResume(personalInfo.resume)}
             className="hidden sm:flex items-center space-x-2 text-xs font-semibold px-4 py-2 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white hover:border-emerald-500 transition-all duration-250 cursor-pointer"
           >
             <ArrowDownToLine size={14} />
@@ -143,7 +144,7 @@ export default function Header({ darkMode, setDarkMode, activeSection, setActive
             id="mobile-download-resume-btn"
             onClick={() => {
               setIsMenuOpen(false);
-              downloadResumeMD();
+              downloadResume(personalInfo.resume);
             }}
             className="flex items-center justify-center space-x-2 w-full py-3 rounded-xl bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition-colors cursor-pointer"
           >

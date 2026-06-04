@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowUp, ArrowDownToLine } from 'lucide-react';
 import { personalInfo } from '../data';
-import { downloadResumeMD } from '../utils';
+import { downloadResume } from '../utils';
 
 export default function Footer() {
   const jumpToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,7 +55,7 @@ export default function Footer() {
           
           <button
             id="footer-download-resume-btn"
-            onClick={downloadResumeMD}
+            onClick={() => downloadResume(personalInfo.resume)}
             className="flex items-center space-x-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white hover:border-emerald-500 transition-all duration-200 cursor-pointer"
           >
             <ArrowDownToLine size={13} />
