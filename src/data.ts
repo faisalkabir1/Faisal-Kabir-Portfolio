@@ -1,4 +1,4 @@
-import { Project, Skill, Experience } from './types';
+import { Project, Skill, Experience, Testimonial } from './types';
 
 export const personalInfo = {
   name: "Faisal Kabir",
@@ -333,3 +333,43 @@ export const references = [
     email: "maruf.mhb@gmail.com"
   }
 ];
+
+export const testimonials: Testimonial[] = [
+  {
+    id: "rec-1",
+    name: "Maruf Hossain",
+    designation: "Lead Software Engineer",
+    company: "Siara Solutions Pty Ltd",
+    reviewText: "Faisal is an exceptional SQA Engineer who bridges the gap between development speed and code stability. His regression automation suites with Playwright and REST Assured saved us dozens of execution hours every week, catching critical race conditions long before our code reached production. His diagnostic accuracy is unparalleled.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  },
+  {
+    id: "rec-2",
+    name: "Salman Rahman",
+    designation: "Sr. Software Engineer (QA)",
+    company: "Cefalo Bangladesh Ltd.",
+    reviewText: "Having collaborated with Faisal on complex test matrices, I was consistently impressed by his meticulous defect documenting and requirement mapping. He doesn't just log bugs; he provides full trace patterns, visual logs, and reproducible CLI inputs that make resolving issues a breeze for the dev team. Faisal understands quality at a deep level.",
+    image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  },
+  {
+    id: "rec-3",
+    name: "Tasnim Ahmed",
+    designation: "Product Owner",
+    company: "Tashus Car Share Platform",
+    reviewText: "Faisal's mobile testing strategies on physical devices were instrumental in making Tashus incredibly stable. He executed rigorous gesture audits, network bandwidth latency mocks, and push-notifications checks that significantly boosted our App Store and Google Play launch scores. He is dedicated, analytical, and highly proactive in Agile environments.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  },
+  {
+    id: "rec-4",
+    name: "Anik Sen",
+    designation: "Co-Founder & CTO",
+    company: "Garibook.com",
+    reviewText: "At Garibook, Faisal took full ownership of our traveler and fleet captain application reliability. He engineered bulletproof validation workflows for real-time location streaming and complex payment handshakes. Thanks to his relentless performance test designs on JMeter, our high-frequency log pipelines remained super resilient under concurrent peak traffic.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
+    rating: 5
+  }
+];
+

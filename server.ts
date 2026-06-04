@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
+import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
 
 // Load variables from environment
@@ -31,8 +32,9 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // JSON decoder middleware
-  app.use(express.json());
+  // JSON decoder middleware with higher file payload support (50MB)
+  app.use(express.json({ limit: '50mb' }));
+  app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
   // Serve static files from the public folder
   app.use(express.static(path.join(process.cwd(), 'public')));
@@ -182,6 +184,102 @@ ${message}
     }
     res.status(404).json({ error: 'Entry not found.' });
   });
+
+  // 4. Verify administrator passkey
+  app.post('/api/admin/verify', (req, res) => {
+    const { passkey } = req.body;
+    const expectedPasskey = process.env.ADMIN_PASSKEY || 'admin123';
+    
+    if (passkey === expectedPasskey) {
+      return res.json({ success: true, token: 'faisal-admin-auth-token-1337' });
+    }
+    return res.status(401).json({ error: 'Unauthorized: Invalid administrative passkey.' });
+  });
+
+  // 5. Upload image to public/images (secured with passkey check)
+  app.post('/api/upload-image', (req, res) => {
+    const { passkey, fileContent, fileName } = req.body;
+
+    const expectedPasskey = process.env.ADMIN_PASSKEY || 'admin123';
+    if (passkey !== expectedPasskey) {
+      return res.status(401).json({ error: 'Unauthorized: Invalid passkey.' });
+    }
+
+    if (!fileContent || !fileName) {
+      return res.status(400).json({ error: 'Missing file content or filename.' });
+    }
+
+    try {
+      // Create public/images directory if it doesn't exist
+      const imagesDir = path.join(process.cwd(), 'public', 'images');
+      if (!fs.existsSync(imagesDir)) {
+        fs.mkdirSync(imagesDir, { recursive: true });
+      }
+
+      // Safe file generation
+      const ext = path.extname(fileName) || '.png';
+      const timestamp = Date.now();
+      const sanitizedBaseName = fileName.replace(ext, '').replace(/[^a-zA-Z0-9_-]/g, '_');
+      const cleanFileName = `${sanitizedBaseName}_${timestamp}${ext}`;
+      const targetPath = path.join(imagesDir, cleanFileName);
+
+      // Extract Base64 data block
+      const base64Data = fileContent.replace(/^data:image\/\w+;base64,/, "");
+      fs.writeFileSync(targetPath, base64Data, 'base64');
+
+      const relativeUrlPath = `/images/${cleanFileName}`;
+      console.log(`[API /api/upload-image] Saved image ${cleanFileName} successfully.`);
+      return res.json({ success: true, imagePath: relativeUrlPath });
+    } catch (err: any) {
+      console.error('[API /api/upload-image] Error saving uploaded image:', err);
+      return res.status(500).json({ error: `Failed to save file: ${err.message || err}` });
+    }
+  });
+
+  // 6. Rewrite the portfolio database src/data.ts safely (secured with passkey check)
+  app.post('/api/portfolio-data', (req, res) => {
+    const { passkey, personalInfo, projects, skills, experiences, education, trainings, references, testimonials } = req.body;
+    
+    const expectedPasskey = process.env.ADMIN_PASSKEY || 'admin123';
+    if (passkey !== expectedPasskey) {
+      return res.status(401).json({ error: 'Unauthorized: Invalid administrative passkey.' });
+    }
+
+    if (!personalInfo || !projects || !skills || !experiences || !education || !trainings) {
+      return res.status(400).json({ error: 'Missing required portfolio sections.' });
+    }
+
+    try {
+      const dataPath = path.join(process.cwd(), 'src', 'data.ts');
+      
+      const formattedData = `import { Project, Skill, Experience, Testimonial } from './types';
+
+export const personalInfo = ${JSON.stringify(personalInfo, null, 2)};
+
+export const projects: Project[] = ${JSON.stringify(projects, null, 2)};
+
+export const skills: Skill[] = ${JSON.stringify(skills, null, 2)};
+
+export const experiences: Experience[] = ${JSON.stringify(experiences, null, 2)};
+
+export const education = ${JSON.stringify(education, null, 2)};
+
+export const trainings = ${JSON.stringify(trainings, null, 2)};
+
+export const references = ${JSON.stringify(references, null, 2)};
+
+export const testimonials: Testimonial[] = ${JSON.stringify(testimonials, null, 2)};
+`;
+
+      fs.writeFileSync(dataPath, formattedData, 'utf-8');
+      console.log('[API /api/portfolio-data] Successfully updated src/data.ts from Admin Panel.');
+      return res.json({ success: true, message: 'All portfolio sections saved, compiled, and written directly inside the codebase!' });
+    } catch (err: any) {
+      console.error('[API /api/portfolio-data] Error saving src/data.ts content:', err);
+      return res.status(500).json({ error: `Failed to write code file: ${err.message || err}` });
+    }
+  });
+
 
   // Serve static assets or mount Vite server depending on Environment
   if (process.env.NODE_ENV !== 'production') {

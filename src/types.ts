@@ -35,3 +35,14 @@ export interface ContactSubmission {
   subject: string;
   message: string;
 }
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  designation: string;
+  company: string;
+  reviewText: string;
+  image: string;
+  rating: number;
+}
+
