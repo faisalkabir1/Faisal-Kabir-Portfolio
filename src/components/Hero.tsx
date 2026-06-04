@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ChevronRight, ArrowDown, MapPin, Github, Linkedin, AppWindow, Check, User } from 'lucide-react';
-import { personalInfo } from '../data';
+import { usePortfolioData } from '../PortfolioDataContext';
 
 export default function Hero() {
+  const { personalInfo } = usePortfolioData();
   const [imgSrc, setImgSrc] = useState(personalInfo.avatar || '');
   const [imgFailed, setImgFailed] = useState(false);
 

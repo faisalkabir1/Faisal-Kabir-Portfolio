@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
 import { Code2, ShieldAlert, Sparkles, Server, Hammer, Globe, Layers } from 'lucide-react';
-import { skills } from '../data';
+import { usePortfolioData } from '../PortfolioDataContext';
 
 export default function Skills() {
+  const { skills } = usePortfolioData();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

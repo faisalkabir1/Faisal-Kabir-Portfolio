@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
 import { Briefcase, GraduationCap, Award, CheckCircle } from 'lucide-react';
-import { experiences, education, trainings } from '../data';
+import { usePortfolioData } from '../PortfolioDataContext';
 
 export default function Experience() {
+  const { experiences, education, trainings } = usePortfolioData();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

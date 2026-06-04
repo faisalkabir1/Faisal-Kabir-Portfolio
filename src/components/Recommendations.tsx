@@ -2,11 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 
-import { testimonials } from '../data';
+import { usePortfolioData } from '../PortfolioDataContext';
 import { Testimonial } from '../types';
 
 
 export default function Recommendations() {
+  const { testimonials } = usePortfolioData();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
   const timerRef = useRef<NodeJS.Timeout | null>(null);

@@ -1,10 +1,11 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ExternalLink, Github, Search, X, ShieldAlert, Globe, Play, Apple } from 'lucide-react';
-import { projects } from '../data';
+import { usePortfolioData } from '../PortfolioDataContext';
 import { Project } from '../types';
 
 export default function Gallery() {
+  const { projects } = usePortfolioData();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);

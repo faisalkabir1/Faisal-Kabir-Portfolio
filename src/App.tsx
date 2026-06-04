@@ -16,13 +16,13 @@ import Recommendations from './components/Recommendations';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import AdminPanel from './components/AdminPanel';
+import { PortfolioDataProvider } from './PortfolioDataContext';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    // Default to dark mode as requested
     const saved = localStorage.getItem('portfolio-theme');
     if (saved) return saved === 'dark';
-    return true; // default dark mode
+    return true;
   });
 
   const [activeSection, setActiveSection] = useState<string>('about');
@@ -30,7 +30,7 @@ export default function App() {
     return window.location.pathname === '/admin';
   });
 
-  // Listen for navigation state transitions (retains full SPA speed)
+  // Listen for browser back/forward navigation
   useEffect(() => {
     const handlePopState = () => {
       setIsAdminMode(window.location.pathname === '/admin');
@@ -44,40 +44,33 @@ export default function App() {
     setIsAdminMode(false);
   };
 
-  // Sync theme to document element
+  // Sync dark/light theme to document root
   useEffect(() => {
     const root = window.document.documentElement;
     if (darkMode) {
       root.classList.add('dark');
+      root.classList.remove('light');
       localStorage.setItem('portfolio-theme', 'dark');
     } else {
       root.classList.remove('dark');
-      root.classList.add('light'); // Ensure light theme styles also trigger correctly if any override
-      root.classList.remove('dark');
+      root.classList.add('light');
       localStorage.setItem('portfolio-theme', 'light');
     }
   }, [darkMode]);
 
-  // Observer to track sections scrolling
+  // Track active section via IntersectionObserver
   useEffect(() => {
     if (isAdminMode) return;
     const sections = ['about', 'portfolio', 'skills', 'experience', 'contact'];
-    
-    const observerOptions = {
-      root: null,
-      rootMargin: '-30% 0px -60% 0px',
-      threshold: 0
-    };
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { root: null, rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+    );
 
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -88,53 +81,38 @@ export default function App() {
   }, [isAdminMode]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-emerald-500 selection:text-white dark:selection:bg-emerald-400 dark:selection:text-zinc-950 transition-colors duration-350">
-      {/* Custom Mouse Follower Pointer Ring */}
-      <CustomCursor />
+    // PortfolioDataProvider wraps everything — fetches KV data once on load,
+    // falls back to static data.ts if KV is unavailable or empty.
+    <PortfolioDataProvider>
+      <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-emerald-500 selection:text-white dark:selection:bg-emerald-400 dark:selection:text-zinc-950 transition-colors duration-350">
+        <CustomCursor />
 
-      {isAdminMode ? (
-        <AdminPanel onBack={navigateToHome} />
-      ) : (
-        <>
-          {/* Floating/Fixed Navigation header */}
-          <Header
-            darkMode={darkMode}
-            setDarkMode={setDarkMode}
-            activeSection={activeSection}
-            setActiveSection={setActiveSection}
-          />
+        {isAdminMode ? (
+          <AdminPanel onBack={navigateToHome} />
+        ) : (
+          <>
+            <Header
+              darkMode={darkMode}
+              setDarkMode={setDarkMode}
+              activeSection={activeSection}
+              setActiveSection={setActiveSection}
+            />
 
-          {/* Main body content section stack */}
-          <main className="relative flex flex-col">
-            {/* Hero Banner Section */}
-            <Hero />
+            <main className="relative flex flex-col">
+              <Hero />
+              <Skills />
+              <Experience />
+              <TechSlider />
+              <Gallery />
+              <WhyChooseMe />
+              <Contact />
+              <Recommendations />
+            </main>
 
-            {/* Skill Matrix */}
-            <Skills />
-
-            {/* Timeline representation */}
-            <Experience />
-
-            {/* Interactive Logo Slider of Tech Stack */}
-            <TechSlider />
-
-            {/* Dynamic Interactive Portfolio Gallery */}
-            <Gallery />
-
-            {/* Why Choose Faisal Quality Assurance Values */}
-            <WhyChooseMe />
-
-            {/* Contact form and developer sandbox db logs */}
-            <Contact />
-
-            {/* Review & Recommendations automated testimonial carousel */}
-            <Recommendations />
-          </main>
-
-          {/* Aesthetic pairing footer */}
-          <Footer />
-        </>
-      )}
-    </div>
+            <Footer />
+          </>
+        )}
+      </div>
+    </PortfolioDataProvider>
   );
 }
