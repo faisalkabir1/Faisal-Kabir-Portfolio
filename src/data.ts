@@ -32,37 +32,37 @@ export const projects: Project[] = [
     id: "proj-garibook-app",
     title: "Garibook - User App",
     description: "On-demand traveler mobile interface for instant and structured outstation bookings.",
-    longDescription: "Main Traveler application facilitating effortless chauffeur-driven vehicle bookings, instant reservation summaries, real-time vehicle GPS tracking, and notifications. Led rigorous and exhaustive end-to-end user handshakes, API synchronization checks, deep push-notification validations, and extreme multi-scenario network performance tests on actual physical Android and iOS devices.",
+    longDescription: "Main Traveler application facilitating effortless chauffeur-driven vehicle bookings, instant reservation summaries, real-time notifications. Led rigorous and exhaustive end-to-end user handshakes, API synchronization checks, deep push-notification validations, and extreme multi-scenario network performance tests on actual physical Android and iOS devices.",
     category: "fullstack",
     tag: "Mobile App",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.customer",
-    appStoreUrl: "https://apps.apple.com/us/app/garibook/id1590483832",
-    technologies: ["Appium", "Mobile Testing", "Vysor", "GPS Tracking", "Push Notifications"],
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.user&pli=1",
+    appStoreUrl: "https://apps.apple.com/us/app/garibook/id6444159035",
+    technologies: ["Appium", "Mobile Testing", "Automation Suite Development", "GPS Tracking", "Push Notifications"],
     image: "/images/gb-user-app.jpeg",
     featured: true
   },
   {
     id: "proj-garibook-driver",
     title: "Garibook Smart Driver App",
-    description: "Real-time driver assignment, GPS trip tracking, and payout ledger mobile client.",
-    longDescription: "Specialized utility application for registered Garibook captains and chauffeurs. Facilitates bid notifications, route logs, Google Maps API routing sync, real-time fare estimations, and digital cashout controls. Managed detailed high-frequency location ping stability reviews, background sleep behavior tracking, and offline sync verification mechanisms.",
+    description: "Real-time driver assignment, GPS trip tracking, and handy app for drivers to get ride requests, manage trips, and track earnings.",
+    longDescription: "Specialized utility application for registered Garibook captains and chauffeurs. Facilitates bid notifications, Google Maps API routing sync, real-time fare estimations, and digital cashout controls. Analyzed business requirements and prepared test scenarios and test cases, Performed functional, regression, smoke, and exploratory testing on Android and Web platforms.Validated ride booking, fare bidding, return trip matchmaking, payment, and trip management features. Conducted API testing using Postman to ensure data accuracy and system reliability.Identified, documented, tracked, and verified defects.Collaborated closely with developers, product managers, and stakeholders to ensure product quality.",
     category: "fullstack",
     tag: "Mobile App",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.driver",
-    appStoreUrl: "https://apps.apple.com/us/app/garibook-driver/id1590483864",
-    technologies: ["Appium", "Coordinates Spoofing", "Background Services", "GPS Audits", "Offline Sync"],
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.partner&pcampaignid=web_share",
+    appStoreUrl: "https://apps.apple.com/us/app/garibook-smart-driver/id6448910015",
+    technologies: ["Appium", "Manual Testing","Playwright", "Background Services", "GPS Audits", "Performance Testing"],
     image: "/images/smart-driver.jpg",
     featured: true
   },
   {
     id: "proj-garibook-enterprise",
     title: "Garibook Enterprise",
-    description: "Corporate travel, fleet logistics management, and department authorization portal.",
-    longDescription: "Corporate workforce mobility portal allowing multi-department bookings, direct manager approvals, automatic billing profiles, and comprehensive ledger accounts. Rigorously verified role-based access control, hierarchical permission flows, batch invoice generation, and secure SSO login procedures.",
+    description: "Corporate travel, fleet and management, and department authorization portal.",
+    longDescription: "Garibook Enterprise is a comprehensive fleet and transportation management platform designed for businesses, fleet owners, and corporate clients. It enables users to manage vehicle bookings, bid on trips, monitor operations, and track earnings efficiently through a streamlined and user-friendly system. I performed requirement analysis, test case design, functional and API testing, bug tracking, regression testing, and release validation to ensure the platform's quality, reliability, and seamless user experience.",
     category: "fullstack",
     tag: "Mobile App",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook.enterprise",
-    appStoreUrl: "https://apps.apple.com/us/app/garibook-enterprise/id1590483899",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.garibook_enterprise.garibook_enterprise&hl=en",
+    appStoreUrl: "",
     technologies: ["Appium", "Role-Based Access", "SSO Auditing", "Invoice Validation", "Full-Regression"],
     image: "/images/enterprise.png",
     featured: true
@@ -71,22 +71,24 @@ export const projects: Project[] = [
     id: "proj-testcases-web",
     title: "Test Cases- Web",
     description: "Detailed system test cases, scenarios, and requirement traceability matrices.",
-    longDescription: "A professional test suite outlining hundreds of system test cases, integration scenarios, end-to-end user behaviors, and UI/UX validation checklists. Handled test design using JIRA and Excel folders for high-complexity web application portals.",
+    longDescription: "A professional test suite outlining hundreds of system test cases, integration scenarios, end-to-end user behaviors, and UI/UX validation checklists.",
     category: "testcases",
     tag: "Web",
     technologies: ["Test Design", "Traceability Matrix", "Defect Logging", "JIRA"],
     image: "/images/Test-Case-Web.jpg",
+    githubUrl: "https://github.com/faisalkabir1/Test-Case-Web",
     featured: true
   },
   {
     id: "proj-testcases-mobile",
     title: "Test Cases - Mobile App",
     description: "Rigorous test specifications, mobile gesture plans, and deep device compliance structures.",
-    longDescription: "Exhaustive manual and mobile regression test cases covering multi-touch gestures, diverse device resolutions, network bandwidth limits, energy consumption patterns, and notifications checks.",
+    longDescription: "Exhaustive manual and mobile regression test cases covering edge cases, diverse device resolutions, network bandwidth limits, energy consumption patterns, and notifications checks.",
     category: "testcases",
     tag: "Mobile App",
     technologies: ["Mobile Test Plans", "Gesture Audits", "Device Compliance", "Excel Sheets"],
     image: "/images/Test-Case-Mobile.jpg",
+    githubUrl: "https://github.com/faisalkabir1/Test-Case-for-App.git",
     featured: true
   },
   {
@@ -95,6 +97,7 @@ export const projects: Project[] = [
     description: "An innovative car-sharing web and mobile product simplifying vehicle rentals.",
     longDescription: "Tashus connects verified vehicle owners with short-term, medium-term, and extended borrowing renters. Managed end-to-end quality assurance cycles, requirement traceability mapping, and functional flows to secure a seamless rental ecosystem.",
     category: "fullstack",
+    demoUrl: "https://tashus.com",
     technologies: ["React-Js", "Vysor", "Manual Testing", "Test Cases", "Web & Mobile"],
     image: "/images/tashus.jpg",
     featured: true
@@ -105,7 +108,7 @@ export const projects: Project[] = [
     description: "An Australian online car marketplace simplifying transparent dealer-buyer trades.",
     longDescription: "Ensures trade transparency by enabling sellers to list certified specs, accurate damage analysis, and rich galleries. Audited complete user onboarding processes, listing flows, and search structures across adaptive clients.",
     category: "fullstack",
-    technologies: ["React-Js", "Functional Testing", "Spec Audits", "Acceptance Testing"],
+    technologies: ["React-Js","Unit Testing", "Functional Testing", "Spec Audits", "Acceptance Testing"],
     image: "/images/honest-car-sale.webp",
     featured: true
   },
@@ -122,8 +125,8 @@ export const projects: Project[] = [
   {
     id: "proj-tashumove",
     title: "TashuMove",
-    description: "Mobile-first vehicle sharing and logistics tracker with live vehicle map updates.",
-    longDescription: "A specialized companion mobile application matching localized commuters with regional rideshare drivers. Audited complete device lifecycle behaviors, location updates, multi-touch custom panels, and push-notifications across virtual and hardware test suites.",
+    description: "Mobile-first vehicle delevery system and tracker with live updates.",
+    longDescription: "TashuMove is a vehicle delivery and transportation platform that connects drivers with vehicle relocation jobs across different cities. The platform enables drivers to pick up and deliver vehicles safely to customers while providing real-time trip management, tracking, and operational support. I analyzed requirements, designed and executed test cases, and performed functional, regression, and API testing. I was responsible for identifying and tracking defects, validating new features, and ensuring a reliable user experience across both web and mobile platforms. I also collaborated closely with developers and stakeholders to maintain product quality throughout the development lifecycle.",
     category: "fullstack",
     tag: "Mobile App",
     technologies: ["Mobile Testing", "Appium", "Location Updates", "Logs Auditing"],
@@ -144,9 +147,9 @@ export const projects: Project[] = [
   },
   {
     id: "proj-dmoney-api",
-    title: "Dmoney REST API Automation",
+    title: "Dmoney API Automation using Postman & Newman",
     description: "Postman & Newman automated suites evaluating transactional ledgers across roles.",
-    longDescription: "Automated complete transactional logic validations between system administrative dashboards, agents, custom merchants, and users. Includes custom asserts measuring state responses, payloads, and parameter schemas.",
+    longDescription: "Automated complete transactional logic validations between system administrative dashboards, agents, merchants, and users. Includes custom asserts measuring state responses, payloads, and parameter schemas.",
     category: "api",
     technologies: ["Postman", "Newman", "REST Assured", "API Testing", "JSON Schema"],
     image: "/images/postman.webp",
@@ -235,11 +238,11 @@ export const skills: Skill[] = [
   { name: "JMeter Performance Benchmarks", category: "performance", level: 5 },
   { name: "Postman Collection Automations", category: "performance", level: 5 },
   { name: "REST Assured Assertion Frameworks", category: "performance", level: 4 },
-  { name: "OWASP ZAP / Nmap Auditions", category: "performance", level: 4 },
+  { name: "OWASP ZAP / Burp Suite", category: "performance", level: 4 },
 
   // Tools
-  { name: "Jira / Asana", category: "tools", level: 5 },
-  { name: "Azure DevOps Channels", category: "tools", level: 4 },
+  { name: "Jira / Clickup", category: "tools", level: 5 },
+  { name: "Azure DevOps", category: "tools", level: 4 },
   { name: "Vysor Devices Integration", category: "tools", level: 5 },
   { name: "Git & Webhook Pipelines", category: "tools", level: 5 }
 ];
@@ -265,8 +268,7 @@ export const experiences: Experience[] = [
       "Developed and implemented software test plans and automated, scalable test strategies across core platforms.",
       "Executed Functional and Non-functional test suites across primary production environments for both web and mobile clients.",
       "Identified, documented, and tracked software defects meticulously, reducing cumulative production bugs by 30-35%.",
-      "Worked heavily on regression automated scripts, security scanners (OWASP ZAP, Nmap), and compiled clean status digests.",
-      "Contributed directly to a 20% system revenue increment by elevating absolute application security, performance stability, and client satisfaction metrics."
+      "Worked heavily on regression automated scripts, security scanners (OWASP ZAP),Contributed directly to a 20% system revenue increment by elevating absolute application security, performance stability, and client satisfaction metrics."
     ]
   },
   {
@@ -287,21 +289,22 @@ export const education = [
     degree: "BSc in Computer Science and Engineering",
     school: "Gopalganj Science and Technology University",
     passingYear: "2022",
-    details: "Focus on Algorithms, Software Design Architectures, Object Oriented Programming, and Database Management."
+    details: "Focused on Algorithms, Software Design Architectures, Object Oriented Programming, Machine Learning, and Database Management."
   },
   {
     degree: "HSC (Higher Secondary Certificate)",
     school: "Cantonment College, Jashore",
     passingYear: "2017",
-    details: "Science Group with strong mathematical and systemic problem solving fundamentals."
+    details: "Completed Higher Secondary Certificate (HSC) in the Science Group, building a strong foundation in Mathematics, Physics, Chemistry, and analytical problem-solving skills."
   },
   {
     degree: "SSC (Secondary School Certificate)",
     school: "Nandina M.H.K. Govt. Pilot High School",
     passingYear: "2015",
-    details: "Science Group. Excelled in analytical logic representation and teamwork certifications."
+    details: "Focused on Mathematics and General Science."
   }
 ];
+
 
 export const trainings = [
   {
@@ -342,8 +345,8 @@ export const testimonials: Testimonial[] = [
     name: "Maruf Hossain",
     designation: "Lead Software Engineer",
     company: "Siara Solutions Pty Ltd",
-    reviewText: "Faisal is an exceptional SQA Engineer who bridges the gap between development speed and code stability. His regression automation suites with Playwright and REST Assured saved us dozens of execution hours every week, catching critical race conditions long before our code reached production. His diagnostic accuracy is unparalleled.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
+    reviewText: "Faisal is an exceptional SQA Engineer who bridges the gap between development speed and code stability. His regression automation suites with Playwright and Mobile App Automation with Selenium-Appium saved us dozens of execution hours every week, catching critical race conditions long before our code reached production. His diagnostic accuracy is unparalleled.",
+    image: "/images/maruf.jpeg",
     rating: 5
   },
   {
@@ -351,26 +354,26 @@ export const testimonials: Testimonial[] = [
     name: "Salman Rahman",
     designation: "Sr. Software Engineer (QA)",
     company: "Cefalo Bangladesh Ltd.",
-    reviewText: "Having collaborated with Faisal on complex test matrices, I was consistently impressed by his meticulous defect documenting and requirement mapping. He doesn't just log bugs; he provides full trace patterns, visual logs, and reproducible CLI inputs that make resolving issues a breeze for the dev team. Faisal understands quality at a deep level.",
-    image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&h=150&q=80",
+    reviewText: "I had the pleasure of teaching and working closely with Faisal, and I have consistently been impressed by his dedication, professionalism, and passion for learning. He possesses strong analytical and problem-solving skills, which have helped him excel in Software Quality Assurance and testing practices. Faisal is a quick learner who takes initiative, pays attention to detail, and approaches challenges with a positive mindset. His ability to understand requirements, identify critical issues, and communicate effectively with team members makes him a valuable asset to any organization.",
+    image: "/images/salman.jpeg",
     rating: 5
   },
   {
     id: "rec-3",
-    name: "Tasnim Ahmed",
-    designation: "Product Owner",
-    company: "Tashus Car Share Platform",
-    reviewText: "Faisal's mobile testing strategies on physical devices were instrumental in making Tashus incredibly stable. He executed rigorous gesture audits, network bandwidth latency mocks, and push-notifications checks that significantly boosted our App Store and Google Play launch scores. He is dedicated, analytical, and highly proactive in Agile environments.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Rakibul Islam Shahar",
+    designation: "Automation Engineer(SQA)",
+    company: "RootNext Solutions",
+    reviewText: "Working closely with Faisal Kabir, I've consistently observed his exemplary teamwork and collaborative spirit. Faisal actively engages in discussions, offering valuable insights and suggestions that contribute significantly to our project's success. His positive attitude and willingness to go the extra mile to support team members make him a pleasure to work with. Additionally, Faisal's strong problem-solving skills and ability to adapt to evolving project requirements have consistently impressed me. Overall, Faisal's combination of technical expertise, teamwork, and adaptability make him an exceptional colleague and an invaluable asset to any team.",
+    image: "/images/rakibul.jpg",
     rating: 5
   },
   {
     id: "rec-4",
-    name: "Anik Sen",
-    designation: "Co-Founder & CTO",
-    company: "Garibook.com",
-    reviewText: "At Garibook, Faisal took full ownership of our traveler and fleet captain application reliability. He engineered bulletproof validation workflows for real-time location streaming and complex payment handshakes. Thanks to his relentless performance test designs on JMeter, our high-frequency log pipelines remained super resilient under concurrent peak traffic.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Md Mynuddin",
+    designation: "Software QA Engineer",
+    company: "Programming Hero",
+    reviewText: "I had the opportunity to study and work with Faisal Kabir, and he stands out as a skilled and dependable SQA Engineer. He approaches testing with a sharp analytical mindset and pays close attention to detail, ensuring high-quality outcomes. Faisal is proactive, quick to adapt, and consistently brings a structured approach to problem-solving. He is also a great team player with clear communication, making collaboration smooth and effective. I highly recommend Faisal Kabir.",
+    image: "/images/mynuddin.jpeg",
     rating: 5
   }
 ];

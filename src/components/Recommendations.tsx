@@ -10,26 +10,47 @@ export default function Recommendations() {
   const { testimonials } = usePortfolioData();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const isPausedRef = useRef(false);
 
-  const resetTimer = () => {
+  const clearTimer = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
+      timerRef.current = null;
     }
+  };
+
+  const startTimer = () => {
+    clearTimer();
+
+    if (isPausedRef.current) {
+      return;
+    }
+
     timerRef.current = setInterval(() => {
       setDirection('right');
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
     }, 4000);
   };
 
+  const resetTimer = () => {
+    startTimer();
+  };
+
   useEffect(() => {
-    resetTimer();
+    isPausedRef.current = isPaused;
+
+    if (isPaused) {
+      clearTimer();
+    } else {
+      startTimer();
+    }
+
     return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
+      clearTimer();
     };
-  }, []);
+  }, [isPaused, testimonials.length]);
 
   const handlePrev = () => {
     setDirection('left');
@@ -114,10 +135,15 @@ export default function Recommendations() {
         </div>
 
         {/* Carousel Slider Panel Wrapper */}
-        <div id="reviews-carousel-outer" className="relative min-h-[360px] md:min-h-[320px] flex items-center justify-center p-1">
+        <div id="reviews-carousel-outer" className="relative h-[480px] md:h-[420px] flex items-center justify-center p-1">
           
           {/* Main Card Testimonial Display */}
-          <div id="reviews-slider-track" className="w-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-900/15 border border-zinc-150/50 dark:border-zinc-800/40 rounded-3xl p-8 md:p-12 shadow-sm">
+          <div
+            id="reviews-slider-track"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            className="w-full h-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-900/15 border border-zinc-150/50 dark:border-zinc-800/40 rounded-3xl p-8 md:p-12 shadow-sm"
+          >
             
             {/* Absolute quote background icons */}
             <div className="absolute top-6 left-6 text-zinc-200/50 dark:text-zinc-800/15 pointer-events-none">

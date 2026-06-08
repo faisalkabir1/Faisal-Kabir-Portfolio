@@ -1,20 +1,89 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🚀 Faisal Kabir - SQA Engineer Portfolio
 
-# Run and deploy your AI Studio app
+Welcome to my personal portfolio website showcasing my skills, experience, projects, and expertise in Software Quality Assurance (SQA), Test Automation, API Testing, and Web Application Testing.
 
-This contains everything you need to run your app locally.
+## 🌐 Live Website
 
-View your app in AI Studio: https://ai.studio/apps/4bf42eb2-c2e8-4d28-9e1f-932efb417d41
+🔗 **Portfolio:** https://faisalkabir.ami.bd/
 
-## Run Locally
+## 👨‍💻 About Me
 
-**Prerequisites:**  Node.js
+I am a Software Quality Assurance (SQA) Engineer with experience in:
 
+* Manual Testing
+* Test Automation
+* API Testing
+* Web & Mobile Application Testing
+* Performance Testing
+* Security Testing
+* Agile Development Process
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🛠️ Skills & Technologies
+
+### Programming Languages
+
+* Java
+* JavaScript
+* TypeScript
+* Python
+
+### Test Automation
+
+* Playwright
+* Selenium
+* Cypress
+* TestNG
+* JUnit
+
+### API Testing
+
+* Postman
+
+### Security Testing
+
+* Burp Suite
+* OWASP ZAP
+
+### Databases
+
+* MySQL
+* MongoDB
+
+### Project Management & DevOps
+
+* Git
+* GitHub
+* Jira
+* Azure DevOps
+* ClickUp
+
+### Frontend & Web Technologies
+
+* HTML5
+* CSS3
+* React
+* Next.js
+* WordPress
+
+## ✨ Portfolio Features
+
+* Responsive Design
+* Interactive UI & Animations
+* Skills Showcase
+* Project Portfolio
+* Professional Experience
+* Contact Form
+* Fast Loading Performance
+* SEO Optimized
+
+## 📫 Contact
+
+Feel free to connect with me through my portfolio website:
+
+🔗 https://faisalkabir.ami.bd/
+
+---
+
+### ⭐ Support
+
+If you like this project, consider giving it a **Star ⭐** on GitHub.
