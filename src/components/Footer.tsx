@@ -40,7 +40,7 @@ export default function Footer() {
           >
             LinkedIn
           </a>
-          <a
+          {/* <a
             id="footer-admin-lnk"
             href="/admin"
             onClick={(e) => {
@@ -51,7 +51,7 @@ export default function Footer() {
             className="text-xs text-zinc-400 hover:text-emerald-500 dark:text-zinc-500 dark:hover:text-emerald-400 transition font-sans cursor-pointer"
           >
             Admin Portal
-          </a>
+          </a> */}
           
           <button
             id="footer-download-resume-btn"
