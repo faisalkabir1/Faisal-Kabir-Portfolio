@@ -135,14 +135,14 @@ export default function Recommendations() {
         </div>
 
         {/* Carousel Slider Panel Wrapper */}
-        <div id="reviews-carousel-outer" className="relative h-[480px] md:h-[420px] flex items-center justify-center p-1">
+        <div id="reviews-carousel-outer" className="relative flex items-center justify-center p-1">
           
           {/* Main Card Testimonial Display */}
           <div
             id="reviews-slider-track"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="w-full h-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-900/15 border border-zinc-150/50 dark:border-zinc-800/40 rounded-3xl p-8 md:p-12 shadow-sm"
+            className="w-full relative overflow-hidden min-h-[420px] md:min-h-[420px] bg-zinc-50 dark:bg-zinc-900/15 border border-zinc-150/50 dark:border-zinc-800/40 rounded-3xl p-8 md:p-12 shadow-sm"
           >
             
             {/* Absolute quote background icons */}
@@ -158,7 +158,7 @@ export default function Recommendations() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="flex flex-col h-full justify-between relative z-10"
+                className="flex flex-col h-full min-h-[280px] justify-between relative z-10"
                 id={`recommendation-slide-${testimonials[currentIndex].id}`}
               >
                 {/* Review Text */}
